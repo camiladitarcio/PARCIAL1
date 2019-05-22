@@ -1,7 +1,7 @@
 #ifndef ORQUESTA_H_INCLUDED
 #define ORQUESTA_H_INCLUDED
-
 #define TEXT_SIZE 20
+#include "utn.h"
 
 typedef struct
 {
@@ -20,7 +20,7 @@ typedef struct
 // 3 camara
 
 #endif // FANTASMA_H_INCLUDED
-void inicializarOrquestaConDatos(Orquesta array[], int size);
+void inicializarOrquestaConDatos(Orquesta array[], int size,int* contadorID);
 int orquesta_Inicializar(Orquesta array[], int size);                                    //cambiar orquesta
 int orquesta_buscarEmpty(Orquesta array[], int size, int* posicion);                    //cambiar orquesta
 int orquesta_buscarID(Orquesta array[], int size, int valorBuscado, int* posicion);                    //cambiar orquesta

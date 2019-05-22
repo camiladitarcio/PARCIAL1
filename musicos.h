@@ -1,9 +1,10 @@
 #ifndef MUSICOS_H_INCLUDED
 #define MUSICOS_H_INCLUDED
-
 #define TEXT_SIZE 20
-#include "orquesta.h"
+#include "utn.h"
 #include "instrumentos.h"
+#include "orquesta.h"
+
 typedef struct
 {
     int idUnico;
@@ -22,7 +23,8 @@ typedef struct
 
 #endif // FANTASMA_H_INCLUDED
 
-int musicos_Inicializar(Musicos array[], int size);                                    //cambiar musicos
+int musicos_Inicializar(Musicos array[], int size);
+void inicializarMusicosConDatos(Musicos array[], int size, int* contadorID);                              //cambiar musicos
 int musicos_buscarEmpty(Musicos array[], int size, int* posicion);                    //cambiar musicos
 int musicos_buscarID(Musicos array[], int size, int valorBuscado, int* posicion);                    //cambiar musicos
 int musicos_buscarInt(Musicos array[], int size, int valorBuscado, int* posicion);                    //cambiar musicos

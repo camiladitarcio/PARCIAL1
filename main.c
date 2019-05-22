@@ -4,6 +4,7 @@
 #include "orquesta.h"
 #include "instrumentos.h"
 #include "utn.h"
+#include "informes.h"
 #define QTY_MUSICOS 1000
 #define QTY_ORQUESTAS 50
 #define QTY_INSTRUMENTOS 20
@@ -15,13 +16,17 @@ int main()
     Musicos arrayMusicos[QTY_MUSICOS];
     Orquesta arrayOrquesta[QTY_ORQUESTAS];
     Instrumentos arrayInstrumentos[QTY_INSTRUMENTOS];
-    int contadorIdOrquesta=5;
+    int contadorIdOrquesta=0;
     int contadorIdMusicos=0;
-    int contadorIdInstrumentos=5;
+    int contadorIdInstrumentos=0;
 
-    musicos_Inicializar(arrayMusicos,QTY_MUSICOS);
-    inicializarOrquestaConDatos(arrayOrquesta,QTY_ORQUESTAS);
-    inicializarInstrumentosConDatos(arrayInstrumentos,QTY_ORQUESTAS);
+    //musicos_Inicializar(arrayMusicos,QTY_MUSICOS);
+    //orquesta_Inicializar(arrayOrquesta,QTY_ORQUESTAS);
+    //instrumentos_Inicializar(arrayInstrumentos,QTY_INSTRUMENTOS);
+    inicializarOrquestaConDatos(arrayOrquesta,QTY_ORQUESTAS,&contadorIdOrquesta);
+    inicializarMusicosConDatos(arrayMusicos,QTY_MUSICOS,&contadorIdMusicos);
+    inicializarInstrumentosConDatos(arrayInstrumentos,QTY_INSTRUMENTOS,&contadorIdInstrumentos);
+
     do
     {
         utn_getUnsignedInt("\n1)Agregar Orquestas \n2)Eliminar Orquestas \n3)Imprimir Orquestas"
@@ -69,6 +74,7 @@ int main()
 
             case 9:
                 instrumentos_listar(arrayInstrumentos,contadorIdInstrumentos);
+                Informes_listarMayorCantidad(arrayOrquesta,QTY_ORQUESTAS);
                 break;
 
             default:

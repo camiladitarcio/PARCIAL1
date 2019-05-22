@@ -1,7 +1,7 @@
 
 #include <string.h>
 #include <stdio.h>
-#include <stdio_ext.h>
+//#include <stdio_ext.h>
 #include <stdlib.h>
 #include "utn.h"
 #include "orquesta.h"
@@ -30,6 +30,32 @@ int musicos_Inicializar(Musicos array[], int size)                              
     return retorno;
 }
 
+//inicializar con datos
+void inicializarMusicosConDatos(Musicos array[], int size, int* contadorID)
+{
+    char nombre[5][TEXT_SIZE] = {"Juan","Melisa","Jose","Carli","Jon"};
+    char apellido[5][TEXT_SIZE] = {"Perez","Fernandez","Gomez","Gonzales","Snow"};
+    int edad[5] = {25,30,20,33,41};
+    char orquesta[5][TEXT_SIZE] = {"Filarmonica","Camara","Sinfonica","Camara","Filarmonica"};
+    char instrumento[5][TEXT_SIZE] = {"Cuerdas","Viento-Madera","Cuerdas","Viento-Metal","Cuerdas"};
+    int i;
+    for (i=0; i<5; i++)
+    {
+        (*contadorID)++;
+        array[i].isEmpty = 0;
+        array[i].idUnico = *contadorID;
+        strncpy(array[i].nombre,nombre[i],(sizeof(nombre)));
+        strncpy(array[i].apellido,apellido[i],(sizeof(apellido)));
+        strncpy(array[i].orquesta,orquesta[i],(sizeof(orquesta)));
+        strncpy(array[i].instrumento,instrumento[i],(sizeof(instrumento)));
+        array[i].edad = edad[i];
+    }
+
+    for(i=5;i<size;i++)
+    {
+        array[i].isEmpty = 1;
+    }
+}
 //*****************************************
 //Buscar
 //Int
@@ -172,55 +198,52 @@ int musicos_alta(Musicos array[], int size, int* contadorID,
             array[posicion].idUnico=*contadorID;
             array[posicion].isEmpty=0;
             utn_getName("\nIngrese nombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);
-            utn_getTexto("\nIngrese apellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido);
-            utn_getUnsignedInt("\nIngrese edad: ","\nError",1,sizeof(int),1,1,1,&array[posicion].edad);
+            utn_getName("\nIngrese apellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido);
+            utn_getSignedInt("\nIngrese edad: ","\nError",1,sizeof(int),1,100,1,&array[posicion].edad);
 
-
-            __fpurge(stdin);
-            utn_getUnsignedInt("\nIngrese ID de orquesta en la que toca: ","\nError",1,sizeof(int),1,4,1,&idOrquesta);
+            utn_getSignedInt("\nIngrese ID de orquesta en la que toca: ","\nError",1,sizeof(int),1,cantOrq,1,&idOrquesta);
             for(i=0;i<cantOrq;i++)
             {
                 if(idOrquesta==pOrquesta[i].idUnico)
                 {
                     if(pOrquesta[i].isEmpty==0)
                     {
-                       switch(idOrquesta)
+                       switch(pOrquesta[i].tipo)
                        {
                             case 1:
-                            strcpy(array[i].orquesta,"Sinfonica");
+                            strcpy(array[posicion].orquesta,"Sinfonica");
                             break;
                             case 2:
-                            strcpy(array[i].orquesta,"Filarmonica");
+                            strcpy(array[posicion].orquesta,"Filarmonica");
                             break;
                             case 3:
-                            strcpy(array[i].orquesta,"Sinfonica");
+                            strcpy(array[posicion].orquesta,"Sinfonica");
                             break;
                        }
                     }
                 }
             }//for orq
 
-            __fpurge(stdin);
-            utn_getUnsignedInt("\nIngrese ID de Instrumento que toca: ","\nError",1,sizeof(int),1,5,1,&idInstrumento);
+            utn_getSignedInt("\nIngrese ID de Instrumento que toca: ","\nError",1,sizeof(int),1,cantInstrumentos,1,&idInstrumento);
             for(i=0;i<cantInstrumentos;i++)
             {
                 if(idInstrumento==pInstrumentos[i].idUnico)
                 {
                     if(pInstrumentos[i].isEmpty==0)
                     {
-                       switch(idInstrumento)
+                       switch(pInstrumentos[i].tipo)
                        {
                             case 1:
-                            strcpy(array[i].instrumento,"Cuerdas");
+                            strcpy(array[posicion].instrumento,"Cuerdas");
                             break;
                             case 2:
-                            strcpy(array[i].instrumento,"Viento Madera");
+                            strcpy(array[posicion].instrumento,"Viento Madera");
                             break;
                             case 3:
-                            strcpy(array[i].instrumento,"Viento Metal");
+                            strcpy(array[posicion].instrumento,"Viento Metal");
                             break;
                             case 4:
-                            strcpy(array[i].instrumento,"Percusion");
+                            strcpy(array[posicion].instrumento,"Percusion");
                             break;
                        }
                     }
@@ -426,7 +449,7 @@ int musicos_listar(Musicos array[], int size,
                 continue;
                 }
 
-            printf("\n ID: %d\n Nombre: %s\n Apellido: %s \n Edad: %d\n Orquesta: %s\n Instrumento: %s\n",
+            printf("\n ID: %d\t Nombre: %s\t Apellido: %s \t Edad: %d\t Orquesta: %s\t Instrumento: %s",
                     array[i].idUnico,array[i].nombre,array[i].apellido,
                     array[i].edad,array[i].orquesta,array[i].instrumento);
         }

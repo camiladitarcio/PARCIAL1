@@ -3,6 +3,7 @@
 #define INSTRUMENTOS_H_INCLUDED
 
 #define TEXT_SIZE 20
+#include "utn.h"
 
 typedef struct
 {
@@ -22,7 +23,7 @@ typedef struct
 
 #endif // FANTASMA_H_INCLUDED
 
-void inicializarInstrumentosConDatos(Instrumentos array[], int size);
+void inicializarInstrumentosConDatos(Instrumentos array[], int size, int *contadorID);
 int instrumentos_Inicializar(Instrumentos array[], int size);                                    //cambiar instrumentos
 int instrumentos_buscarEmpty(Instrumentos array[], int size, int* posicion);                    //cambiar instrumentos
 int instrumentos_buscarID(Instrumentos array[], int size, int valorBuscado, int* posicion);                    //cambiar instrumentos

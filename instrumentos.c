@@ -13,7 +13,6 @@
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-/*
 int instrumentos_Inicializar(Instrumentos array[], int size)                                    //cambiar instrumentos
 {
     int retorno=-1;
@@ -27,19 +26,23 @@ int instrumentos_Inicializar(Instrumentos array[], int size)                    
     }
     return retorno;
 }
-*/
 
-void inicializarInstrumentosConDatos(Instrumentos array[], int size)
+void inicializarInstrumentosConDatos(Instrumentos array[], int size, int *contadorID)
 {
-    int id[5] = {1,2,3,4,5};
     char nombre[5][TEXT_SIZE] = {"Uno","Dos","Tres","Cuatro","Cinco"};
     int tipo[5] = {1,4,2,3,2};
     int i;
     for (i=0; i<5; i++)
     {
-        array[i].idUnico = id[i];
+        (*contadorID)++;
+        array[i].isEmpty = 0;
+        array[i].idUnico = *contadorID;
         strncpy(array[i].nombre,nombre[i],(sizeof(nombre)));
         array[i].tipo = tipo[i];
+    }
+        for(i=5;i<size;i++)
+    {
+        array[i].isEmpty = 1;
     }
 }
 //*****************************************
@@ -181,10 +184,8 @@ int instrumentos_alta(Instrumentos array[], int size, int* contadorID)          
             array[posicion].idUnico=*contadorID;
             array[posicion].isEmpty=0;
             utn_getName("getName\n: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);
-            utn_getUnsignedInt("\nIngrese Instrumento\n: 1)Cuerdas \t2)Viento-madera \t3)Viento-metal \t4)Percusion","\nError",1,sizeof(int),1,2,1,&array[posicion].tipo);
+            utn_getSignedInt("\nIngrese Instrumento\n: 1)Cuerdas \t2)Viento-madera \t3)Viento-metal \t4)Percusion","\nError",1,sizeof(int),1,2,1,&array[posicion].tipo);
 
-
-                  //mensaje + cambiar campo apellido
             printf("\n ID: %d\n Nombre: %s\n Tipo: %d ",
                     array[posicion].idUnico,array[posicion].nombre,array[posicion].tipo);
             retorno=0;
@@ -345,6 +346,7 @@ int instrumentos_listar(Instrumentos array[], int size)                      //c
     int i;
     if(array!=NULL && size>=0)
     {
+        printf("\nINSTRUMENTOS:");
         for(i=0;i<size;i++)
         {
             if(array[i].isEmpty==1)
@@ -352,21 +354,20 @@ int instrumentos_listar(Instrumentos array[], int size)                      //c
                 continue;
             }
 
-                if(array[i].tipo==1)
+                switch(array[i].tipo)
                 {
-                    strcpy(array[i].tipoNombre,"Cuerdas");
-                }
-                if(array[i].tipo==2)
-                {
-                    strcpy(array[i].tipoNombre,"Viento-madera");
-                }
-                if(array[i].tipo==3)
-                {
-                    strcpy(array[i].tipoNombre,"Viento-metal");
-                }
-                if(array[i].tipo==4)
-                {
-                    strcpy(array[i].tipoNombre,"Percusion");
+                case 1:
+                strcpy(array[i].tipoNombre,"Cuerdas");
+                break;
+                case 2:
+                strcpy(array[i].tipoNombre,"Viento Madera");
+                break;
+                case 3:
+                strcpy(array[i].tipoNombre,"Viento Metal");
+                break;
+                case 4:
+                strcpy(array[i].tipoNombre,"Percusion");
+                break;
                 }
 
             printf("\n ID: %d\t Nombre: %s\t Tipo: %s",
