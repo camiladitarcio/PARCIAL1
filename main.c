@@ -74,14 +74,16 @@ int main()
 
             case 9:
                 instrumentos_listar(arrayInstrumentos,contadorIdInstrumentos);
-                Informes_listarMayorCantidad(arrayOrquesta,QTY_ORQUESTAS);
                 break;
-
+            case 10:
+                Informes_musicosMayoraEdad(arrayMusicos,QTY_MUSICOS);
+                Informes_orquestaPorLugar(arrayOrquesta,QTY_ORQUESTAS);
+                break;
             default:
                 printf("\nOpcion no valida");
         }
     }
-    while(opcion!=10);
+    while(opcion!=11);
     return 0;
 }
 

@@ -31,11 +31,11 @@ int orquesta_Inicializar(Orquesta array[], int size)                            
 
 void inicializarOrquestaConDatos(Orquesta array[], int size, int* contadorID)
 {
-    char nombre[5][TEXT_SIZE] = {"Uno","Dos","Tres","Cuatro","Cinco"};
-    char lugar[5][TEXT_SIZE] = {"Teatro","Teatro","Cine","LugarX","LugarZ"};
-    int tipo[5] = {1,3,2,3,1};
+    char nombre[4][TEXT_SIZE] = {"Orquesta1","Orquesta2","Orquesta3","Orquesta4"};
+    char lugar[4][TEXT_SIZE] = {"Lugar1","Lugar2","Lugar3","Lugar4"};
+    int tipo[4] = {1,2,3,3};
     int i;
-    for (i=0; i<5; i++)
+    for (i=0; i<4; i++)
     {
         (*contadorID)++;
         array[i].isEmpty = 0;
@@ -45,7 +45,7 @@ void inicializarOrquestaConDatos(Orquesta array[], int size, int* contadorID)
         array[i].tipo = tipo[i];
     }
 
-    for(i=5;i<size;i++)
+    for(i=4;i<size;i++)
     {
         array[i].isEmpty = 1;
     }

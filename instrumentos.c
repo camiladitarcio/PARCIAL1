@@ -29,8 +29,8 @@ int instrumentos_Inicializar(Instrumentos array[], int size)                    
 
 void inicializarInstrumentosConDatos(Instrumentos array[], int size, int *contadorID)
 {
-    char nombre[5][TEXT_SIZE] = {"Uno","Dos","Tres","Cuatro","Cinco"};
-    int tipo[5] = {1,4,2,3,2};
+    char nombre[5][TEXT_SIZE] = {"Inst1","Inst2","Inst3","Inst4","Inst5"};
+    int tipo[5] = {1,2,2,3,4};
     int i;
     for (i=0; i<5; i++)
     {

@@ -33,13 +33,13 @@ int musicos_Inicializar(Musicos array[], int size)                              
 //inicializar con datos
 void inicializarMusicosConDatos(Musicos array[], int size, int* contadorID)
 {
-    char nombre[5][TEXT_SIZE] = {"Juan","Melisa","Jose","Carli","Jon"};
-    char apellido[5][TEXT_SIZE] = {"Perez","Fernandez","Gomez","Gonzales","Snow"};
-    int edad[5] = {25,30,20,33,41};
-    char orquesta[5][TEXT_SIZE] = {"Filarmonica","Camara","Sinfonica","Camara","Filarmonica"};
-    char instrumento[5][TEXT_SIZE] = {"Cuerdas","Viento-Madera","Cuerdas","Viento-Metal","Cuerdas"};
+    char nombre[6][TEXT_SIZE] = {"Mus1","Mus2","Mus3","Mus4","Mus5","Mus6"};
+    char apellido[6][TEXT_SIZE] = {"Amus1","Amus2","Amus3","Amus4","Amus5","Amus6"};
+    int edad[6] = {30,20,25,27,22,35};
+    char orquesta[6][TEXT_SIZE] = {"Sinfonica","Filarmonica","Camara","Camara","Sinfonica","Camara"};
+    char instrumento[6][TEXT_SIZE] = {"Viento-madera","Percusion","Viento-madera","Cuerdas","Viento-madera","Viento-metal"};
     int i;
-    for (i=0; i<5; i++)
+    for (i=0; i<6; i++)
     {
         (*contadorID)++;
         array[i].isEmpty = 0;
@@ -51,7 +51,7 @@ void inicializarMusicosConDatos(Musicos array[], int size, int* contadorID)
         array[i].edad = edad[i];
     }
 
-    for(i=5;i<size;i++)
+    for(i=6;i<size;i++)
     {
         array[i].isEmpty = 1;
     }
