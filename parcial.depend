@@ -1,1 +1,60 @@
 # depslib dependency file v1.0
+1559238720 source:c:\utn\parcial1-master\informes.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"musicos.h"
+
+1558568367 c:\utn\parcial1-master\utn.h
+
+1559226240 c:\utn\parcial1-master\musicos.h
+	"utn.h"
+	"instrumentos.h"
+	"orquesta.h"
+
+1559225328 c:\utn\parcial1-master\instrumentos.h
+	"utn.h"
+
+1559226240 c:\utn\parcial1-master\orquesta.h
+	"utn.h"
+
+1559239764 source:c:\utn\parcial1-master\instrumentos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"instrumentos.h"
+	"utn.h"
+
+1559230967 source:c:\utn\parcial1-master\musicos.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"orquesta.h"
+	"musicos.h"
+
+1559236016 source:c:\utn\parcial1-master\orquesta.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"orquesta.h"
+
+1558568367 source:c:\utn\parcial1-master\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1559239393 source:c:\utn\parcial1-master\main.c
+	<stdio.h>
+	<stdlib.h>
+	"musicos.h"
+	"orquesta.h"
+	"instrumentos.h"
+	"utn.h"
+	"informes.h"
+
+1559238805 c:\utn\parcial1-master\informes.h
+

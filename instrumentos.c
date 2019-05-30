@@ -27,17 +27,19 @@ int instrumentos_Inicializar(Instrumentos array[], int size)                    
     return retorno;
 }
 
-void inicializarInstrumentosConDatos(Instrumentos array[], int size, int *contadorID)
+void inicializarInstrumentosConDatos(Instrumentos array[], int size)
 {
+    int idUnico[5] = {1,2,3,4,5};
     char nombre[5][TEXT_SIZE] = {"Inst1","Inst2","Inst3","Inst4","Inst5"};
     int tipo[5] = {1,2,2,3,4};
+    char tipoNombre[5][TEXT_SIZE]={"Cuerdas","Viento-madera","Viento-madera","Viento-metal","Percusion"};
     int i;
     for (i=0; i<5; i++)
     {
-        (*contadorID)++;
+        array[i].idUnico = idUnico[i];
         array[i].isEmpty = 0;
-        array[i].idUnico = *contadorID;
         strncpy(array[i].nombre,nombre[i],(sizeof(nombre)));
+        strncpy(array[i].tipoNombre,tipoNombre[i],(sizeof(tipoNombre)));
         array[i].tipo = tipo[i];
     }
         for(i=5;i<size;i++)
@@ -171,6 +173,7 @@ int instrumentos_buscarString(Instrumentos array[], int size, char* valorBuscado
 int instrumentos_alta(Instrumentos array[], int size, int* contadorID)                          //cambiar instrumentos
 {
     int retorno=-1;
+    int tipo;
     int posicion;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
@@ -183,11 +186,25 @@ int instrumentos_alta(Instrumentos array[], int size, int* contadorID)          
             (*contadorID)++;
             array[posicion].idUnico=*contadorID;
             array[posicion].isEmpty=0;
-            utn_getName("getName\n: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);
-            utn_getSignedInt("\nIngrese Instrumento\n: 1)Cuerdas \t2)Viento-madera \t3)Viento-metal \t4)Percusion","\nError",1,sizeof(int),1,2,1,&array[posicion].tipo);
-
-            printf("\n ID: %d\n Nombre: %s\n Tipo: %d ",
-                    array[posicion].idUnico,array[posicion].nombre,array[posicion].tipo);
+            utn_getName("\nNombre de Instrumento: ","\n -- ERROR --",1,TEXT_SIZE,1,array[posicion].nombre);
+            utn_getSignedInt("\nIngrese Instrumento\n: 1)Cuerdas \t2)Viento-madera \t3)Viento-metal \t4)Percusion","\nError",1,sizeof(int),1,2,1,&tipo);
+            switch(tipo)
+            {
+            case 1:
+                strcpy(array[posicion].tipoNombre,"Cuerdas");
+                break;
+            case 2:
+                strcpy(array[posicion].tipoNombre,"Viento-madera");
+                break;
+            case 3:
+                strcpy(array[posicion].tipoNombre,"Viento-metal");
+                break;
+            case 4:
+                strcpy(array[posicion].tipoNombre,"Percusion");
+                break;
+            }
+            array[posicion].tipo=tipo;
+            printf("\n ID: %d / Nombre: %s / Tipo: %d / TipoNombre: %s",array[posicion].idUnico,array[posicion].nombre,array[posicion].tipo,array[posicion].tipoNombre);
             retorno=0;
         }
     }
@@ -353,28 +370,46 @@ int instrumentos_listar(Instrumentos array[], int size)                      //c
             {
                 continue;
             }
-
-                switch(array[i].tipo)
-                {
-                case 1:
-                strcpy(array[i].tipoNombre,"Cuerdas");
-                break;
-                case 2:
-                strcpy(array[i].tipoNombre,"Viento Madera");
-                break;
-                case 3:
-                strcpy(array[i].tipoNombre,"Viento Metal");
-                break;
-                case 4:
-                strcpy(array[i].tipoNombre,"Percusion");
-                break;
-                }
-
-            printf("\n ID: %d\t Nombre: %s\t Tipo: %s",
-                    array[i].idUnico,array[i].nombre,array[i].tipoNombre);    //cambiar todos
+            else
+            {
+              printf("\n ID: %d\t Nombre: %s\t Tipo: %s",
+                    array[i].idUnico,array[i].nombre,array[i].tipoNombre);
+            }
         }
         retorno=0;
     }
     return retorno;
 }
 
+int Instrumentos_tipoInstrumentoPorId(Instrumentos array[], int size, int idPosicion)
+{
+    int i;
+    int tipo;
+
+    if(array!=NULL && size>=0 && idPosicion>0)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(array[i].idUnico==idPosicion && array[i].isEmpty==0)
+            {
+                if(array[i].tipo==1)
+                {
+                   tipo = 1;
+                }
+                else if(array[i].tipo==2)
+                {
+                    tipo = 2;
+                }
+                else if(array[i].tipo==3)
+                {
+                    tipo = 3;
+                }
+                else if(array[i].tipo==4)
+                {
+                    tipo = 4;
+                }
+            }
+        }
+    }
+    return tipo;
+}

@@ -23,7 +23,7 @@ typedef struct
 
 #endif // FANTASMA_H_INCLUDED
 
-void inicializarInstrumentosConDatos(Instrumentos array[], int size, int *contadorID);
+void inicializarInstrumentosConDatos(Instrumentos array[], int size);
 int instrumentos_Inicializar(Instrumentos array[], int size);                                    //cambiar instrumentos
 int instrumentos_buscarEmpty(Instrumentos array[], int size, int* posicion);                    //cambiar instrumentos
 int instrumentos_buscarID(Instrumentos array[], int size, int valorBuscado, int* posicion);                    //cambiar instrumentos
@@ -34,7 +34,8 @@ int instrumentos_baja(Instrumentos array[], int sizeArray);                     
 int instrumentos_bajaValorRepetidoInt(Instrumentos array[], int sizeArray, int valorBuscado);
 int instrumentos_modificar(Instrumentos array[], int sizeArray);                                //cambiar instrumentos
 int instrumentos_ordenarPorString(Instrumentos array[],int size);                              //cambiar instrumentos
-int instrumentos_listar(Instrumentos array[], int size);                      //cambiar instrumentos
+int instrumentos_listar(Instrumentos array[], int size);
+int Instrumentos_tipoInstrumentoPorId(Instrumentos array[], int size, int idPosicion);              //cambiar instrumentos
 
 
 
